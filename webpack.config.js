@@ -4,7 +4,7 @@ console.log(path.resolve(__dirname, 'public'));
 
 module.exports = {
   mode: 'development',
-  entry: './src/app.js',
+  entry: './src/testing/redux-expensify.js',
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
