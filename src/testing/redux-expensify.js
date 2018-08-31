@@ -127,6 +127,12 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
 
     return startDateMatch && endDateMatch && textMatch;
+  }).sort((a, b) => {
+    if (sortBy === 'date') {
+      return a.createdAt < b.createdAt ? 1 : -1;
+    } else if (sortBy === 'amount') {
+      return a.amount < b.amount ? 1 : -1;
+    }
   });
 }
 
@@ -144,15 +150,15 @@ store.subscribe(() => {
   console.log(visibleExpenses);
 });
 
-const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100, createdAt: 1000 }));
-const expenseTwo = store.dispatch(addExpense({ description: 'Beer', amount: 500, createdAt: -1000 }));
+const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100, createdAt: -1000 }));
+const expenseTwo = store.dispatch(addExpense({ description: 'Beer', amount: 500, createdAt: 1000 }));
 
 // store.dispatch(removeExpense({ id: expenseOne.expense.id }));
 // store.dispatch(editExpense(expenseTwo.expense.id, {amount: 1000}));
 
-store.dispatch(setTextFilter('beer'));
+// store.dispatch(setTextFilter('beer'));
 
-// store.dispatch(sortByAmount());
+store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 
 // store.dispatch(setStartDate(125));
@@ -174,13 +180,3 @@ const demoState = {
     endDate: undefined
   }
 };
-
-const user = {
-  name: 'Jimmy',
-  age: 26
-};
-
-console.log({
-  ...user,
-  location: 'Bullworth'
-});
