@@ -33,7 +33,6 @@ const editExpense = (id, updates) => ({
 }); 
 
 
-const expensesReducerDefaultState = [];
 const filtersReducerDefaultState = {
   text: '',
   sortBy: 'date',
@@ -41,6 +40,7 @@ const filtersReducerDefaultState = {
   endDate: undefined
 };
 
+const expensesReducerDefaultState = [];
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
   switch (action.type) {
     case 'ADD_EXPENSE':
